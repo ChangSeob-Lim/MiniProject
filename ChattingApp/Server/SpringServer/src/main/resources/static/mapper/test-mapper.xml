@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.server.mapper.TestMapper">
+	
+	<select id="selectAll" resultType="com.server.item.TestItem" >
+		SELECT
+			TID, 
+			CODE, 
+			NAME 
+		FROM TEST
+	</select>
+	
+	<select id="select" resultType="java.util.HashMap" parameterType="String">
+		SELECT
+			TID, 
+			CODE, 
+			NAME 
+		FROM TEST
+		WHERE TID = #{param}
+		
+	</select>
+	
+	<update id="update" parameterType="String">
+		UPDATE
+			TEST
+		SET
+			CODE = #{code}, 
+			NAME = #{name}
+		WHERE
+			TID = #{tid}
+	</update>
+	
+	<insert id="insert" parameterType="String">
+		INSERT INTO
+			TEST
+			(CODE, NAME)
+			VALUES
+			(#{code}, #{name})
+	</insert>
+	
+	<delete id="delete" parameterType="String">
+		DELETE 
+		FROM TEST 
+		WHERE 
+			TID = #{tid}
+	</delete>
+</mapper>
